@@ -19,6 +19,8 @@ import {
   createRouteRef,
   NavItemBlueprint,
   PageBlueprint,
+  useApi,
+  appTreeApiRef,
 } from '@backstage/frontend-plugin-api';
 import VisualizerIcon from '@material-ui/icons/Visibility';
 
@@ -29,9 +31,46 @@ const appVisualizerPage = PageBlueprint.make({
     path: '/visualizer',
     routeRef: rootRouteRef,
     loader: () =>
-      import('./components/AppVisualizerPage').then(m => (
-        <m.AppVisualizerPage />
-      )),
+      import('./components/AppVisualizerPage/TreeVisualizer').then(m => {
+        const Component = () => {
+          const appTreeApi = useApi(appTreeApiRef);
+          const { tree } = appTreeApi.getTree();
+          return <m.TreeVisualizer tree={tree} />;
+        };
+        return <Component />;
+      }),
+  },
+});
+const appVisualizerDetailedPage = PageBlueprint.make({
+  name: 'details',
+  params: {
+    path: '/visualizer/detailed',
+    title: 'Detailed',
+    loader: () =>
+      import('./components/AppVisualizerPage/DetailedVisualizer').then(m => {
+        const Component = () => {
+          const appTreeApi = useApi(appTreeApiRef);
+          const { tree } = appTreeApi.getTree();
+          return <m.DetailedVisualizer tree={tree} />;
+        };
+        return <Component />;
+      }),
+  },
+});
+const appVisualizerTextPage = PageBlueprint.make({
+  name: 'text',
+  params: {
+    path: '/visualizer/text',
+    title: 'Text',
+    loader: () =>
+      import('./components/AppVisualizerPage/TextVisualizer').then(m => {
+        const Component = () => {
+          const appTreeApi = useApi(appTreeApiRef);
+          const { tree } = appTreeApi.getTree();
+          return <m.TextVisualizer tree={tree} />;
+        };
+        return <Component />;
+      }),
   },
 });
 
@@ -47,5 +86,10 @@ export const appVisualizerNavItem = NavItemBlueprint.make({
 export const visualizerPlugin = createFrontendPlugin({
   pluginId: 'app-visualizer',
   info: { packageJson: () => import('../package.json') },
-  extensions: [appVisualizerPage, appVisualizerNavItem],
+  extensions: [
+    appVisualizerPage,
+    appVisualizerDetailedPage,
+    appVisualizerTextPage,
+    appVisualizerNavItem,
+  ],
 });

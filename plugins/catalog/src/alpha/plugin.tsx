@@ -16,7 +16,6 @@
 
 import { convertLegacyRouteRefs } from '@backstage/core-compat-api';
 import { createFrontendPlugin } from '@backstage/frontend-plugin-api';
-
 import { entityRouteRef } from '@backstage/plugin-catalog-react';
 
 import {
@@ -40,7 +39,13 @@ import contextMenuItems from './contextMenuItems';
 /** @alpha */
 export default createFrontendPlugin({
   pluginId: 'catalog',
-  info: { packageJson: () => import('../../package.json') },
+  info: {
+    packageJson: () => import('../../package.json'),
+  },
+  'presentation/metadata/display': {
+    icon: 'catalog',
+    title: 'Software Catalog',
+  },
   routes: convertLegacyRouteRefs({
     catalogIndex: rootRouteRef,
     catalogEntity: entityRouteRef,

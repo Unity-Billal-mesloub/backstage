@@ -30,10 +30,12 @@ export const PageBlueprint = createExtensionBlueprint({
     coreExtensionData.routePath,
     coreExtensionData.reactElement,
     coreExtensionData.routeRef.optional(),
+    coreExtensionData.title.optional(),
   ],
   config: {
     schema: {
       path: z => z.string().optional(),
+      title: z => z.string().optional(),
     },
   },
   *factory(
@@ -43,6 +45,7 @@ export const PageBlueprint = createExtensionBlueprint({
        */
       defaultPath?: [Error: `Use the 'path' param instead`];
       path: string;
+      title?: string;
       loader: () => Promise<JSX.Element>;
       routeRef?: RouteRef;
     },
@@ -54,6 +57,9 @@ export const PageBlueprint = createExtensionBlueprint({
     );
     if (params.routeRef) {
       yield coreExtensionData.routeRef(params.routeRef);
+    }
+    if (params.title) {
+      yield coreExtensionData.title(config.title ?? params.title);
     }
   },
 });

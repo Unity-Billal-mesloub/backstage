@@ -20,6 +20,8 @@ import {
   createExtensionInput,
   NotFoundErrorPage,
 } from '@backstage/frontend-plugin-api';
+import { Header } from '@backstage/ui';
+import { ReactNode } from 'react';
 import { useRoutes } from 'react-router-dom';
 
 export const AppRoutes = createExtension({
@@ -31,13 +33,25 @@ export const AppRoutes = createExtension({
       coreExtensionData.routeRef.optional(),
       coreExtensionData.reactElement,
     ]),
+    headerActions: createExtensionInput([coreExtensionData.reactElement]),
   },
   output: [coreExtensionData.reactElement],
   factory({ inputs }) {
+    const headerActionsByPluginId = new Map<string, Array<ReactNode>>();
+    for (const input of inputs.headerActions) {
+      const action = input.get(coreExtensionData.reactElement);
+
+      headerActionsByPluginId.set(input.node.spec.plugin.id, [
+        ...(headerActionsByPluginId.get(input.node.spec.plugin.id) || []),
+        action,
+      ]);
+    }
+
     const Routes = () => {
       const element = useRoutes([
         ...inputs.routes.map(route => {
           const routePath = route.get(coreExtensionData.routePath);
+          const pluginId = route.node.spec.plugin.id;
 
           return {
             path:
@@ -45,7 +59,15 @@ export const AppRoutes = createExtension({
                 ? routePath
                 : `${routePath.replace(/\/$/, '')}/*`,
 
-            element: route.get(coreExtensionData.reactElement),
+            element: (
+              <>
+                <Header
+                  title={pluginId}
+                  customActions={headerActionsByPluginId.get(pluginId)}
+                />
+                {route.get(coreExtensionData.reactElement)}
+              </>
+            ),
           };
         }),
         {

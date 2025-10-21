@@ -18,6 +18,7 @@ import Grid from '@material-ui/core/Grid';
 
 import {
   ApiBlueprint,
+  HeaderActionBlueprint,
   NavItemBlueprint,
   PageBlueprint,
   createFrontendPlugin,
@@ -37,12 +38,13 @@ import {
 import { defaultDefinitionWidgets } from './components/ApiDefinitionCard';
 import { rootRoute, registerComponentRouteRef } from './routes';
 import { apiDocsConfigRef } from './config';
-import { AppIcon } from '@backstage/core-components';
+import { AppIcon, CreateButton } from '@backstage/core-components';
 
 import {
   EntityCardBlueprint,
   EntityContentBlueprint,
 } from '@backstage/plugin-catalog-react/alpha';
+import { Button, ButtonLink } from '@backstage/ui';
 
 const apiDocsNavItem = NavItemBlueprint.make({
   params: {
@@ -245,6 +247,15 @@ export default createFrontendPlugin({
     apiDocsProvidingComponentsEntityCard,
     apiDocsDefinitionEntityContent,
     apiDocsApisEntityContent,
+    HeaderActionBlueprint.make({
+      name: 'register-api',
+      params: {
+        loader: async () =>
+          compatWrapper(
+            <ButtonLink href="/catalog">Register Existing API</ButtonLink>,
+          ),
+      },
+    }),
   ],
 });
 

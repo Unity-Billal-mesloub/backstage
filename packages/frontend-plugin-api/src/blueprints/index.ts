@@ -29,6 +29,7 @@ export {
 } from './NavContentBlueprint';
 export { NavItemBlueprint } from './NavItemBlueprint';
 export { PageBlueprint } from './PageBlueprint';
+export { HeaderActionBlueprint } from './HeaderActionBlueprint';
 export { RouterBlueprint } from './RouterBlueprint';
 export { SignInPageBlueprint } from './SignInPageBlueprint';
 export { ThemeBlueprint } from './ThemeBlueprint';
