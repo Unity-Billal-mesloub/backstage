@@ -584,6 +584,8 @@ describe('OidcRouter', () => {
             grant_type: 'authorization_code',
             code: authorizationCode,
             redirect_uri: 'https://example.com/callback',
+            client_id: client.clientId,
+            client_secret: client.clientSecret,
           })
           .expect(200);
 
@@ -677,6 +679,8 @@ describe('OidcRouter', () => {
             code: authorizationCode,
             redirect_uri: 'https://example.com/callback',
             code_verifier: codeVerifier,
+            client_id: client.clientId,
+            client_secret: client.clientSecret,
           })
           .expect(200);
 
@@ -696,7 +700,18 @@ describe('OidcRouter', () => {
       });
 
       it('should reject token exchange with invalid authorization code', async () => {
-        const { router } = await createRouter(databaseId);
+        const {
+          mocks: { service },
+          router,
+        } = await createRouter(databaseId);
+
+        const client = await service.registerClient({
+          clientName: 'Test Client',
+          redirectUris: ['https://example.com/callback'],
+          responseTypes: ['code'],
+          grantTypes: ['authorization_code'],
+          scope: 'openid',
+        });
 
         const { server } = await startTestBackend({
           features: [
@@ -724,6 +739,8 @@ describe('OidcRouter', () => {
             grant_type: 'authorization_code',
             code: 'invalid-code',
             redirect_uri: 'https://example.com/callback',
+            client_id: client.clientId,
+            client_secret: client.clientSecret,
           })
           .expect(401);
 
@@ -811,6 +828,8 @@ describe('OidcRouter', () => {
             code: authorizationCode,
             redirect_uri: 'https://example.com/callback',
             code_verifier: codeVerifier,
+            client_id: client.clientId,
+            client_secret: client.clientSecret,
           })
           .expect(200);
 
