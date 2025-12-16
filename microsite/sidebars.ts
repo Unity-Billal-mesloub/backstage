@@ -267,6 +267,7 @@ export default {
           'features/software-templates/dry-run-testing',
           'features/software-templates/experimental',
           'features/software-templates/templating-extensions',
+          'features/software-templates/audit-events',
           {
             type: 'category',
             label: 'API',
