@@ -243,6 +243,7 @@ export default {
             items: catalogSidebar,
           },
           'features/software-catalog/creating-the-catalog-graph',
+          'features/software-catalog/audit-events',
           'features/software-catalog/faq',
         ],
       },
