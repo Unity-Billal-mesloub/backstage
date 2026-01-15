@@ -73,7 +73,7 @@ const appPluginOverride = appPlugin.withOverrides({
  *
  * @public
  */
-export function renderTestApp(options: RenderTestAppOptions) {
+export async function renderTestApp(options: RenderTestAppOptions) {
   const extensions = [
     RouterBlueprint.make({
       params: {
@@ -99,7 +99,7 @@ export function renderTestApp(options: RenderTestAppOptions) {
     features.push(...options.features);
   }
 
-  const app = createSpecializedApp({
+  const app = await createSpecializedApp({
     features,
     config: ConfigReader.fromConfigs([
       {

@@ -37,8 +37,8 @@ import { ApiProvider, ConfigReader } from '@backstage/core-app-api';
 import { Fragment } from 'react';
 
 describe('createSpecializedApp', () => {
-  it('should render the root app', () => {
-    const app = createSpecializedApp({
+  it('should render the root app', async () => {
+    const app = await createSpecializedApp({
       features: [
         createFrontendPlugin({
           pluginId: 'test',
@@ -58,8 +58,8 @@ describe('createSpecializedApp', () => {
     expect(screen.getByText('Test')).toBeInTheDocument();
   });
 
-  it('should deduplicate features keeping the last received one', () => {
-    const app = createSpecializedApp({
+  it('should deduplicate features keeping the last received one', async () => {
+    const app = await createSpecializedApp({
       features: [
         createFrontendPlugin({
           pluginId: 'test',
@@ -93,8 +93,8 @@ describe('createSpecializedApp', () => {
     expect(screen.getByText('Test 2')).toBeInTheDocument();
   });
 
-  it('should forward config', () => {
-    const app = createSpecializedApp({
+  it('should forward config', async () => {
+    const app = await createSpecializedApp({
       config: mockApis.config({ data: { test: 'foo' } }),
       features: [
         createFrontendPlugin({
@@ -121,7 +121,7 @@ describe('createSpecializedApp', () => {
 
   it('should support APIs and feature flags', async () => {
     const flags = new Array<{ name: string; pluginId: string }>();
-    const app = createSpecializedApp({
+    const app = await createSpecializedApp({
       features: [
         createFrontendPlugin({
           pluginId: 'test',
@@ -244,10 +244,10 @@ describe('createSpecializedApp', () => {
     `);
   });
 
-  it('should initialize the APIs in the correct order to allow for overrides', () => {
+  it('should initialize the APIs in the correct order to allow for overrides', async () => {
     const mockAnalyticsApi = jest.fn(() => ({ captureEvent: jest.fn() }));
 
-    const app = createSpecializedApp({
+    const app = await createSpecializedApp({
       features: [
         createFrontendPlugin({
           pluginId: 'first',
@@ -312,7 +312,7 @@ describe('createSpecializedApp', () => {
   });
 
   it('should use provided apis', async () => {
-    const app = createSpecializedApp({
+    const app = await createSpecializedApp({
       advanced: {
         apis: TestApiRegistry.from([
           configApiRef,
@@ -365,7 +365,7 @@ describe('createSpecializedApp', () => {
   it('should make the app structure available through the AppTreeApi', async () => {
     let appTreeApi: AppTreeApi | undefined = undefined;
 
-    const { tree } = createSpecializedApp({
+    const { tree } = await createSpecializedApp({
       features: [
         createFrontendPlugin({
           pluginId: 'test',
@@ -514,12 +514,14 @@ describe('createSpecializedApp', () => {
     });
 
     render(
-      createSpecializedApp({
-        features: [pluginA, pluginB],
-        bindRoutes({ bind }) {
-          bind(pluginA.externalRoutes, { ext: pluginB.routes.root });
-        },
-      }).tree.root.instance!.getData(coreExtensionData.reactElement),
+      (
+        await createSpecializedApp({
+          features: [pluginA, pluginB],
+          bindRoutes({ bind }) {
+            bind(pluginA.externalRoutes, { ext: pluginB.routes.root });
+          },
+        })
+      ).tree.root.instance!.getData(coreExtensionData.reactElement),
     );
 
     expect(screen.getByText('link: /test')).toBeInTheDocument();
@@ -528,7 +530,7 @@ describe('createSpecializedApp', () => {
   it('should support multiple attachment points', async () => {
     let appTreeApi: AppTreeApi | undefined = undefined;
 
-    createSpecializedApp({
+    await createSpecializedApp({
       features: [
         createFrontendPlugin({
           pluginId: 'test',
@@ -605,10 +607,10 @@ describe('createSpecializedApp', () => {
     `);
   });
 
-  it('should apply multiple middlewares in order', () => {
+  it('should apply multiple middlewares in order', async () => {
     const textDataRef = createExtensionDataRef<string>().with({ id: 'text' });
 
-    const app = createSpecializedApp({
+    const app = await createSpecializedApp({
       features: [
         createFrontendPlugin({
           pluginId: 'test',
@@ -691,7 +693,7 @@ describe('createSpecializedApp', () => {
         "Attempted to load plugin info for plugin 'test', but the plugin instance is not installed in an app";
       await expect(plugin.info()).rejects.toThrow(errorMsg);
 
-      const app = createSpecializedApp({ features: [plugin] });
+      const app = await createSpecializedApp({ features: [plugin] });
 
       await expect(plugin.info()).rejects.toThrow(errorMsg);
 
@@ -710,7 +712,7 @@ describe('createSpecializedApp', () => {
         extensions: [testExtension],
       });
 
-      const app = createSpecializedApp({ features: [plugin] });
+      const app = await createSpecializedApp({ features: [plugin] });
       const info = await app.tree.nodes.get('test')?.spec.plugin?.info();
       expect(info).toMatchObject({
         packageName: '@backstage/frontend-app-api',
@@ -733,7 +735,7 @@ describe('createSpecializedApp', () => {
         },
       });
 
-      const app = createSpecializedApp({ features: [overriddenPlugin] });
+      const app = await createSpecializedApp({ features: [overriddenPlugin] });
       const info = await app.tree.nodes.get('test')?.spec.plugin?.info();
       expect(info).toMatchObject({
         packageName: 'test-override',
@@ -757,7 +759,7 @@ describe('createSpecializedApp', () => {
         extensions: [testExtension],
       });
 
-      const app = createSpecializedApp({ features: [plugin] });
+      const app = await createSpecializedApp({ features: [plugin] });
       const info = await app.tree.nodes.get('test')?.spec.plugin?.info();
       expect(info).toEqual({
         packageName: '@backstage/frontend-app-api',
@@ -776,7 +778,7 @@ describe('createSpecializedApp', () => {
         extensions: [testExtension],
       });
 
-      const app = createSpecializedApp({
+      const app = await createSpecializedApp({
         features: [plugin],
         advanced: {
           pluginInfoResolver: async ctx => {
