@@ -16,20 +16,17 @@
 
 import clsx from 'clsx';
 import { forwardRef, Ref } from 'react';
-import { Link as RALink, RouterProvider } from 'react-aria-components';
-import { useNavigate, useHref } from 'react-router-dom';
+import { Link as RALink } from 'react-aria-components';
 import type { ButtonLinkProps } from './types';
 import { useStyles } from '../../hooks/useStyles';
 import { ButtonDefinition } from '../Button/definition';
 import { ButtonLinkDefinition } from './definition';
-import { isExternalLink } from '../../utils/isExternalLink';
+import { InternalLinkProvider } from '../InternalLinkProvider';
 import stylesButton from '../Button/Button.module.css';
 
 /** @public */
 export const ButtonLink = forwardRef(
   (props: ButtonLinkProps, ref: Ref<HTMLAnchorElement>) => {
-    const navigate = useNavigate();
-
     const { classNames, dataAttributes, cleanedProps } = useStyles(
       ButtonDefinition,
       {
@@ -45,41 +42,32 @@ export const ButtonLink = forwardRef(
     const { children, className, iconStart, iconEnd, href, ...rest } =
       cleanedProps;
 
-    const isExternal = isExternalLink(href);
-
-    const linkButton = (
-      <RALink
-        className={clsx(
-          classNames.root,
-          classNamesButtonLink.root,
-          stylesButton[classNames.root],
-          className,
-        )}
-        ref={ref}
-        {...dataAttributes}
-        href={href}
-        {...rest}
-      >
-        <span
-          className={clsx(classNames.content, stylesButton[classNames.content])}
-        >
-          {iconStart}
-          {children}
-          {iconEnd}
-        </span>
-      </RALink>
-    );
-
-    // If it's an external link, render RALink without RouterProvider
-    if (isExternal) {
-      return linkButton;
-    }
-
-    // For internal links, use RouterProvider
     return (
-      <RouterProvider navigate={navigate} useHref={useHref}>
-        {linkButton}
-      </RouterProvider>
+      <InternalLinkProvider href={href}>
+        <RALink
+          className={clsx(
+            classNames.root,
+            classNamesButtonLink.root,
+            stylesButton[classNames.root],
+            className,
+          )}
+          ref={ref}
+          {...dataAttributes}
+          href={href}
+          {...rest}
+        >
+          <span
+            className={clsx(
+              classNames.content,
+              stylesButton[classNames.content],
+            )}
+          >
+            {iconStart}
+            {children}
+            {iconEnd}
+          </span>
+        </RALink>
+      </InternalLinkProvider>
     );
   },
 );
