@@ -200,7 +200,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apidevtools/json-schema-ref-parser@npm:^14.0.3, @apidevtools/json-schema-ref-parser@npm:^14.2.1":
+"@apidevtools/json-schema-ref-parser@npm:^14.2.1":
   version: 14.2.1
   resolution: "@apidevtools/json-schema-ref-parser@npm:14.2.1"
   dependencies:
@@ -8597,9 +8597,9 @@ __metadata:
   linkType: hard
 
 "@electric-sql/pglite@npm:^0.3.0":
-  version: 0.3.14
-  resolution: "@electric-sql/pglite@npm:0.3.14"
-  checksum: 10/7cd072cd6a5c4314b47e7d26cc2ac191fcca5ba204f3bb1908bdb34746e51315cbde3e53646020d6a7c19c087d7845d2908850d9f4312285be10b3aefe28d621
+  version: 0.3.15
+  resolution: "@electric-sql/pglite@npm:0.3.15"
+  checksum: 10/705d2b2bec2a87d3dfa837027fa3cbc1297bb4e3a190e4b6a3073841f3505a0e272bf637c39e65db131aebb41c3563d022d5ef26e0f2a73399afce86d7c48e6e
   languageName: node
   linkType: hard
 
@@ -20860,11 +20860,11 @@ __metadata:
   linkType: hard
 
 "@types/d3-shape@npm:^3.0.1":
-  version: 3.1.7
-  resolution: "@types/d3-shape@npm:3.1.7"
+  version: 3.1.8
+  resolution: "@types/d3-shape@npm:3.1.8"
   dependencies:
     "@types/d3-path": "npm:*"
-  checksum: 10/b7ddda2a9c916ba438308bfa6e53fa2bb11c2ce13537ba2a7816c16f9432287b57901921c7231d2924f2d7d360535c3795f017865ab05abe5057c6ca06ca81df
+  checksum: 10/ebc161d49101d84409829fea516ba7ec71ad51a1e97438ca0fafc1c30b56b3feae802d220375323632723a338dda7237c652e831e0b53527a6222ab0d1bb7809
   languageName: node
   linkType: hard
 
@@ -21370,9 +21370,9 @@ __metadata:
   linkType: hard
 
 "@types/lodash@npm:^4.14.151":
-  version: 4.17.21
-  resolution: "@types/lodash@npm:4.17.21"
-  checksum: 10/34920830a3bc82ba619cda05e606fef00c148a69b4f19f770645d2587ccdb8e42ef3ddfc174b7884c0c709fc0a1aeb48f7326da969bad12a1464a03efbbe414c
+  version: 4.17.23
+  resolution: "@types/lodash@npm:4.17.23"
+  checksum: 10/05935534a44aadef67c2158b2fb4a042a226970088106a40ddc67e4f063783149fe5cf02279d7dd4a1e72c98d9189b9430face659645dbf77270f8c4c3e387f5
   languageName: node
   linkType: hard
 
@@ -21494,12 +21494,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/multer@npm:^1.4.13":
-  version: 1.4.13
-  resolution: "@types/multer@npm:1.4.13"
+"@types/multer@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@types/multer@npm:2.0.0"
   dependencies:
     "@types/express": "npm:*"
-  checksum: 10/f650a9f431007f05a5c51d6359140bea5f77d1299668d45a0791ddbf7789f1c220a3e038039c5e0de6608e273d5ee8001e9649c606d7e0e847e8774ccc5d1d68
+  checksum: 10/87ddd5b39fd572b1d98f84908738eed9fef53fc20628bff066d43b3bcf70481f51010a997554ed65c97121e7b8fe44b59a24cd68ccf59c3d7c64bbffb8c5a127
   languageName: node
   linkType: hard
 
@@ -29937,20 +29937,20 @@ __metadata:
   linkType: hard
 
 "esbuild-loader@npm:^4.0.0":
-  version: 4.4.0
-  resolution: "esbuild-loader@npm:4.4.0"
+  version: 4.4.2
+  resolution: "esbuild-loader@npm:4.4.2"
   dependencies:
-    esbuild: "npm:^0.25.0"
+    esbuild: "npm:^0.27.1"
     get-tsconfig: "npm:^4.10.1"
     loader-utils: "npm:^2.0.4"
     webpack-sources: "npm:^1.4.3"
   peerDependencies:
     webpack: ^4.40.0 || ^5.0.0
-  checksum: 10/ec1ba490af711b63ff0b5d157aed9c28cfd1ddc3d570996376e86b296558def07e50219b4727dd4674566a18d8df4c75d468cc0188f922688fa5bb1d7c8621ce
+  checksum: 10/d4c2f5a53f0e204bf9dc87f6767e59080fed016a3f54d8878a519a06fc82918bdb598f8eaab3bd47489566f4112f4737f1e00a5611f012e88d8d1f92eb8ccec6
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.18.0 || ^0.19.0 || ^0.20.0 || ^0.21.0 || ^0.22.0 || ^0.23.0 || ^0.24.0 || ^0.25.0 || ^0.26.0 || ^0.27.0, esbuild@npm:^0.27.0":
+"esbuild@npm:^0.18.0 || ^0.19.0 || ^0.20.0 || ^0.21.0 || ^0.22.0 || ^0.23.0 || ^0.24.0 || ^0.25.0 || ^0.26.0 || ^0.27.0, esbuild@npm:^0.27.0, esbuild@npm:^0.27.1":
   version: 0.27.2
   resolution: "esbuild@npm:0.27.2"
   dependencies:
@@ -31082,11 +31082,11 @@ __metadata:
   linkType: hard
 
 "express-openapi-validator@npm:^5.5.8":
-  version: 5.6.0
-  resolution: "express-openapi-validator@npm:5.6.0"
+  version: 5.6.2
+  resolution: "express-openapi-validator@npm:5.6.2"
   dependencies:
-    "@apidevtools/json-schema-ref-parser": "npm:^14.0.3"
-    "@types/multer": "npm:^1.4.13"
+    "@apidevtools/json-schema-ref-parser": "npm:^14.2.1"
+    "@types/multer": "npm:^2.0.0"
     ajv: "npm:^8.17.1"
     ajv-draft-04: "npm:^1.0.0"
     ajv-formats: "npm:^3.0.1"
@@ -31097,11 +31097,11 @@ __metadata:
     media-typer: "npm:^1.1.0"
     multer: "npm:^2.0.2"
     ono: "npm:^7.1.3"
-    path-to-regexp: "npm:^8.2.0"
-    qs: "npm:^6.14.0"
+    path-to-regexp: "npm:^8.3.0"
+    qs: "npm:^6.14.1"
   peerDependencies:
     express: "*"
-  checksum: 10/03b5d26f16d9b1cc4742b9bd87570c6429fabb856b385658c0f0b323d53d241969c1572bda068ba59e694e45ded094d085674f860665aacf0a6a820f0317cef4
+  checksum: 10/c0e08aab007a4a7b73aad87b3a52ac82e986af46cbe329ba1b9e2f9b896415441e73ed42d4297edc92e3f0267364d0677707613caff2c22b90e61744cfd96b37
   languageName: node
   linkType: hard
 
@@ -41877,7 +41877,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-to-regexp@npm:8.3.0, path-to-regexp@npm:^8.0.0, path-to-regexp@npm:^8.1.0, path-to-regexp@npm:^8.2.0":
+"path-to-regexp@npm:8.3.0, path-to-regexp@npm:^8.0.0, path-to-regexp@npm:^8.1.0, path-to-regexp@npm:^8.3.0":
   version: 8.3.0
   resolution: "path-to-regexp@npm:8.3.0"
   checksum: 10/568f148fc64f5fd1ecebf44d531383b28df924214eabf5f2570dce9587a228e36c37882805ff02d71c6209b080ea3ee6a4d2b712b5df09741b67f1f3cf91e55a
@@ -43366,7 +43366,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.10.1, qs@npm:^6.10.3, qs@npm:^6.11.2, qs@npm:^6.12.2, qs@npm:^6.12.3, qs@npm:^6.14.0, qs@npm:^6.7.0, qs@npm:^6.9.4, qs@npm:~6.14.0":
+"qs@npm:^6.10.1, qs@npm:^6.10.3, qs@npm:^6.11.2, qs@npm:^6.12.2, qs@npm:^6.12.3, qs@npm:^6.14.0, qs@npm:^6.14.1, qs@npm:^6.7.0, qs@npm:^6.9.4, qs@npm:~6.14.0":
   version: 6.14.1
   resolution: "qs@npm:6.14.1"
   dependencies:
