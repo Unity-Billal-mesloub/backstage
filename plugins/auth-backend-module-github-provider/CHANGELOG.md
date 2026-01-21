@@ -1,5 +1,11 @@
 # @backstage/plugin-auth-backend-module-github-provider
 
+## 0.5.0-next.0
+
+### Minor Changes
+
+- ff07934: Added the `userIdMatchingUserEntityAnnotation` sign-in resolver that matches users by their GitHub user ID.
+
 ## 0.4.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # example-backend
 
+## 0.0.47-next.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-auth-backend-module-github-provider@0.5.0-next.0
+
 ## 0.0.46
 
 ### Patch Changes

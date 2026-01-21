@@ -1,5 +1,11 @@
 # @backstage/plugin-auth-backend-module-gitlab-provider
 
+## 0.4.0-next.0
+
+### Minor Changes
+
+- ff07934: Added the `{gitlab-integration-host}/user-id` annotation to store GitLab's user ID (immutable) in user entities. Also includes addition of the `userIdMatchingUserEntityAnnotation` sign-in resolver that matches users by the new ID.
+
 ## 0.3.10
 
 ### Patch Changes

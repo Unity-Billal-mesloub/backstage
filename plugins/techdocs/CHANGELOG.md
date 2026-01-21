@@ -1,5 +1,16 @@
 # @backstage/plugin-techdocs
 
+## 1.16.3-next.0
+
+### Patch Changes
+
+- 9e29545: Improve sidebars (nav/TOC) layout and scrolling
+- Updated dependencies
+  - @backstage/frontend-plugin-api@0.13.3
+  - @backstage/plugin-catalog-react@1.21.6-next.0
+  - @backstage/plugin-search-react@1.10.2
+  - @backstage/integration-react@1.2.14
+
 ## 1.16.2
 
 ### Patch Changes

@@ -208,5 +208,11 @@
     "@backstage/plugin-user-settings-backend": "0.3.10",
     "@backstage/plugin-user-settings-common": "0.0.1"
   },
-  "changesets": []
+  "changesets": [
+    "create-app-1768991678",
+    "seven-states-sleep",
+    "slimy-dots-sing",
+    "slimy-zebras-lie",
+    "vast-rockets-dig"
+  ]
 }
