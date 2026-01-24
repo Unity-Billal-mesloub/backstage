@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { useId } from 'react-aria';
 import { type Key, ResizableTableContainer } from 'react-aria-components';
 import { TableRoot } from './TableRoot';
 import { TableHeader } from './TableHeader';
@@ -28,7 +29,7 @@ import type {
   RowRenderFn,
   TablePaginationType,
 } from '../types';
-import { Fragment, useId, useMemo } from 'react';
+import { useMemo } from 'react';
 import { VisuallyHidden } from '../../VisuallyHidden';
 import { Flex } from '../../Flex';
 
@@ -157,7 +158,7 @@ export function Table<T extends TableItem>({
           <TableHeader columns={visibleColumns}>
             {column =>
               column.header ? (
-                <>{column.header()}</>
+                column.header()
               ) : (
                 <Column
                   id={column.id}
@@ -200,9 +201,7 @@ export function Table<T extends TableItem>({
                       : undefined
                   }
                 >
-                  {column => (
-                    <Fragment key={column.id}>{column.cell(item)}</Fragment>
-                  )}
+                  {column => column.cell(item)}
                 </Row>
               );
             }}
